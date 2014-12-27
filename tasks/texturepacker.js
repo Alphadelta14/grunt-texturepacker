@@ -50,12 +50,22 @@ module.exports = function(grunt) {
     });
 
     // Sheet options
-    args.push('--sheet', options.output.sheet.file);
-    args.push('--texture-format', options.output.sheet.format);
+    if (typeof(options.output.sheet) === 'string') {
+        args.push('--sheet', options.output.sheet);
+        args.push('--texture-format', options.output.sheet.split('.').pop());
+    } else {
+        args.push('--sheet', options.output.sheet.file);
+        args.push('--texture-format', options.output.sheet.format);
+    }
 
     // Data options
-    args.push('--data', options.output.data.file);
-    args.push('--format', options.output.data.format);
+    if (typeof(options.output.data) === 'string') {
+        args.push('--data', options.output.data);
+        args.push('--format', options.output.data.split('.').pop());
+    } else {
+        args.push('--data', options.output.data.file);
+        args.push('--format', options.output.data.format);
+    }
 
     var argument, value;
     var skipOptions = ['output', 'executable'];
