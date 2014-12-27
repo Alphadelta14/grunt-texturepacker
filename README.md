@@ -27,9 +27,17 @@ grunt.initConfig({
   texturepacker: {
     options: {
       // Task-specific options go here.
+      opt: 'RGBA5551'
     },
     your_target: {
       // Target-specific file lists and/or options go here.
+      src: ['textures/a.png', 'textures/b.png', 'textures/c.png'],
+      options: {
+        sheet: 'textures.png'
+        data: {
+          file: 'textures.json',
+          format: 'json'
+      }
     },
   },
 });
@@ -48,22 +56,34 @@ Type: `String|Array`
 
 A string or array containing the files that should be used as an input.
 
-### options.output.sheet.file
+### options.sheet
+Type: `String|Object`
+
+The destination filename for the sheet file. The format will be the file extension
+of this file by default. If an object is provided, use the following:
+
+#### options.sheet.file
 Type: `String`
 
 The destination filename for the sheet file.
 
-### options.output.sheet.format
+#### options.sheet.format
 Type: `String`
 
 The format for the sheet file. See `TexturePacker --help` for available formats.
 
-### options.output.data.file
+### options.data
+Type: `String|Object`
+
+The destination filename for the data file. The format will be the file extension
+of this file by default. If an object is provided, use the following:
+
+#### options.data.file
 Type: `String`
 
-The destination filename for the data file.
+The destination filename for the data file. 
 
-### options.output.data.format
+#### options.data.format
 Type: `String`
 
 The format for the data file. See `TexturePacker --help` for available formats.
@@ -76,6 +96,12 @@ All other options will be converted to CLI options, e.g. `{ basicSortBy: "Width"
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+
+
+#### 0.2.2 (Dec 25 2014)
+
+* Allowed for string values in `options.sheet` and `options.data`. Removed `output`
+from options.
 
 #### 0.0.1 (Apr 25 2014)
 

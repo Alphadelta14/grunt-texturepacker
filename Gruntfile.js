@@ -41,15 +41,13 @@ module.exports = function(grunt) {
           algorithm: 'Basic',
           basicSortBy: 'Width',
           basicOrder: 'Ascending',
-          output: {
-            sheet: {
-              file: 'tmp/assets.png',
-              format: 'png'
-            },
-            data: {
-              file: 'tmp/assets.json',
-              format: 'json'
-            }
+          sheet: {
+            file: 'tmp/assets.png',
+            format: 'png'
+          },
+          data: {
+            file: 'tmp/assets.json',
+            format: 'json'
           }
         }
       }

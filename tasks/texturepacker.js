@@ -19,7 +19,9 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('texturepacker', 'A TexturePacker wrapper for Grunt', function() {
     var done = this.async();
     var options = this.options({
-      executable: 'TexturePacker'
+      executable: 'TexturePacker',
+      sheet: 'textures.png',
+      data: 'textures.json'
     });
     var args = [];
 
@@ -50,25 +52,25 @@ module.exports = function(grunt) {
     });
 
     // Sheet options
-    if (typeof(options.output.sheet) === 'string') {
-        args.push('--sheet', options.output.sheet);
-        args.push('--texture-format', options.output.sheet.split('.').pop());
+    if (typeof(options.sheet) === 'string') {
+      args.push('--sheet', options.sheet);
+      args.push('--texture-format', options.sheet.split('.').pop());
     } else {
-        args.push('--sheet', options.output.sheet.file);
-        args.push('--texture-format', options.output.sheet.format);
+      args.push('--sheet', options.sheet.file);
+      args.push('--texture-format', options.sheet.format);
     }
 
     // Data options
-    if (typeof(options.output.data) === 'string') {
-        args.push('--data', options.output.data);
-        args.push('--format', options.output.data.split('.').pop());
+    if (typeof(options.data) === 'string') {
+      args.push('--data', options.data);
+      args.push('--format', options.data.split('.').pop());
     } else {
-        args.push('--data', options.output.data.file);
-        args.push('--format', options.output.data.format);
+      args.push('--data', options.data.file);
+      args.push('--format', options.data.format);
     }
 
     var argument, value;
-    var skipOptions = ['output', 'executable'];
+    var skipOptions = ['sheet', 'data', 'executable'];
     for (var key in options) {
       if (skipOptions.indexOf(key) !== -1) continue;
 
